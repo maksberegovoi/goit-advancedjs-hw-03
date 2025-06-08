@@ -5,23 +5,25 @@ import "izitoast/dist/css/iziToast.min.css";
 
 
 const input = document.querySelector('#search-images')
-const button = document.querySelector('.search-images-btn')
+const form = document.querySelector('.form')
 const gallery = document.querySelector('.gallery')
 const loaderContainer = document.querySelector('.loader-container')
 
-const getImages = () => {
+const getImages = (event) => {
+  event.preventDefault()
 
   const q = input.value
-  input.value = ""
+  form.reset()
 
   loaderContainer.style.display = 'flex'
   gallery.innerHTML = ''
+
   getImagesApi(q)
     .then(data => {
       if (data.hits.length === 0) {
         throw new Error()
       }
-      
+
       renderImages(data, gallery)
       loaderContainer.style.display = 'none'
     })
@@ -40,4 +42,4 @@ const getImages = () => {
 }
 
 
-button.addEventListener('click', getImages)
+form.addEventListener('submit', getImages)

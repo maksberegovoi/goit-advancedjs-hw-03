@@ -24,7 +24,7 @@ body {
   row-gap: 32px;
   margin-top: 36px;
 
-  .input-group {
+  .form {
     display: flex;
     column-gap: 8px;
 
