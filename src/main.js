@@ -11,9 +11,11 @@ const loaderContainer = document.querySelector('.loader-container')
 
 const getImages = (event) => {
   event.preventDefault()
-
   const q = input.value
-  form.reset()
+  if (!q.trim()){
+    return
+  }
+
 
   loaderContainer.style.display = 'flex'
   gallery.innerHTML = ''
@@ -23,7 +25,7 @@ const getImages = (event) => {
       if (data.hits.length === 0) {
         throw new Error()
       }
-
+      form.reset()
       renderImages(data, gallery)
       loaderContainer.style.display = 'none'
     })
